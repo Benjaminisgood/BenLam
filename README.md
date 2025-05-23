@@ -5,26 +5,39 @@
 本项目用jupyter lab 作为自己的学习记录，如果能帮到其他人那就太好了。
 本项目不断发展中，旨在用编程的方法学习数学、科学计算与机器学习。
 
+## 🚀 Git 使用指南
 
+### ✅ 新项目上传 GitHub（首次推送）
 
-git init  
-git add .  
-git commit -m "Initial commit"  
+```bash
+git init
+git add .
+git commit -m "Initial commit"
 
-git remote add origin https://github.com/Benjaminisgood/BenLam.git  
-git branch -M main  
-git push -u origin main  
+git remote add origin https://github.com/用户名/仓库名.git
+git branch -M main
+git push -u origin main
+```
 
-git add .  
-git commit -m "描述信息"  
-git push  
+### ✅ 如果远程仓库已存在文件（如 README）
 
-git pull --rebase origin main git push -u origin main  
+```bash
+git pull --rebase origin main  # 拉取并合并远程内容（推荐）
+git push -u origin main        # 推送同步
+```
 
-git status  
+### ⚠️ 若确认远程内容可被覆盖，强制推送：
 
-git stash  
-git pull --rebase origin main  
-git stash pop  
+```bash
+git push -u origin main --force
+```
 
-git push --force  
+### 🌿 常用 Git 命令补充
+
+```bash
+git status           # 查看当前状态
+git add .            # 添加所有更改
+git commit -m "信息" # 提交更改
+git stash            # 暂存当前更改（临时保存）
+git stash pop        # 恢复暂存的更改
+```

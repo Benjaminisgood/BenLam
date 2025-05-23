@@ -22,7 +22,6 @@ git push
 
 git pull --rebase origin main git push -u origin main  
 
-<<<<<<< HEAD
 git status
 
 git stash
@@ -30,6 +29,3 @@ git pull --rebase origin main
 git stash pop
 
 git push --force
-=======
-git status
->>>>>>> a0ec157 (WIP: Save current changes before rebase)

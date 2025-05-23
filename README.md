@@ -7,24 +7,24 @@
 
 
 
-git init
+git init  
 git add .  
-git commit -m "Initial commit"
+git commit -m "Initial commit"  
 
-git remote add origin https://github.com/Benjaminisgood/BenLA.git
-git branch -M main
-git push -u origin main
+git remote add origin https://github.com/Benjaminisgood/BenLA.git  
+git branch -M main  
+git push -u origin main  
 
-git add .
-git commit -m "描述信息"
-git push
+git add .  
+git commit -m "描述信息"  
+git push  
 
 git pull --rebase origin main git push -u origin main  
 
-git status
+git status  
 
-git stash
-git pull --rebase origin main
-git stash pop
+git stash  
+git pull --rebase origin main  
+git stash pop  
 
-git push --force
+git push --force  

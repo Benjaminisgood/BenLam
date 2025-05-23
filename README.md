@@ -102,3 +102,8 @@ git stash pop           # 恢复更改
 ```
 
 此流程适合个人项目快速迭代，后续如有多人协作建议加入分支管理与 PR 流程。
+  
+
+git add . 
+git commit -m "描述信息"
+git push    

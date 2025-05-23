@@ -1,9 +1,9 @@
 <p align="center">
-<h1 align="center"> <img src="./imgs/icon/ai.png" width="30" /> 《麻省理工公开课：线性代数》笔记</h1>
+<h1 align="center"> <img src="./imgs/icon/ai.png" width="30" /> 科学计算+数学+物理+化学+机器学习+人工智能的n合一学习笔记</h1>
 
-
-本项目基于GitHub项目基础之上，参考前人pdf笔记，在此基础上用jupyter lab 进一步优化笔记内容，作为自己的学习记录，如果能帮到其他人那就太好了。
-
+本人化学专业，半路出家学习将计算机与AI融入日常科研。
+本项目用jupyter lab 作为自己的学习记录，如果能帮到其他人那就太好了。
+本项目不断发展中，旨在用编程的方法学习数学、科学计算与机器学习。
 
 
 

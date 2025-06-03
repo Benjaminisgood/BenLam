@@ -1,25 +1,12 @@
 # coding: utf-8
 
 
-import sys
 import numpy as np
-import os
+import os # 导入操作系统接口模块，用于文件路径处理（这段代码中其实没用到）
 import pandas as pd
+from urllib.error import HTTPError # HTTPError 需要显式导入，否则 except HTTPError: 会报错
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
-
-# # Machine Learning with PyTorch and Scikit-Learn  
-# # -- Code Examples
-
-
-# Add folder to path in order to load from the check_packages.py script:
-
-
-
-sys.path.insert(0, '..')
-
-
-# Check recommended package versions:
 
 # # Chapter 2 - Training Machine Learning Algorithms for Classification
 
@@ -121,8 +108,8 @@ class Perceptron:
         """
         rgen = np.random.RandomState(self.random_state)
         self.w_ = rgen.normal(loc=0.0, scale=0.01, size=X.shape[1])
-        self.b_ = np.float_(0.)
-        
+        #self.b_ = np.float_(0.)
+        self.b_ = float(0.)
         self.errors_ = []
 
         for _ in range(self.n_iter):
@@ -144,6 +131,54 @@ class Perceptron:
         return np.where(self.net_input(X) >= 0.0, 1, 0)
 
 
+# import numpy as np  # 导入NumPy用于矩阵和数值计算
+# 
+# class Perceptron:
+#     """感知机分类器（用于二分类任务）"""
+# 
+#     def __init__(self, eta=0.01, n_iter=50, random_state=1):
+#         # 学习率（控制每次权重更新的幅度）
+#         self.eta = eta
+#         # 训练轮数（迭代次数）
+#         self.n_iter = n_iter
+#         # 随机数种子（用于初始化权重时保持结果一致）
+#         self.random_state = random_state
+# 
+#     def fit(self, X, y):
+#         """
+#         训练模型。
+# 
+#         参数：
+#         X: 输入特征，形状为 [样本数, 特征数]
+#         y: 目标标签，形状为 [样本数]，值为 -1 或 1
+#         """
+#         rng = np.random.RandomState(self.random_state)  # 创建随机数生成器
+#         self.w_ = rng.normal(loc=0.0, scale=0.01, size=X.shape[1])  # 初始化权重为小随机数
+#         self.b_ = 0.0  # 初始化偏置为0
+#         self.errors_ = []  # 用于记录每轮训练中的错误次数
+# 
+#         for _ in range(self.n_iter):  # 外循环：训练轮数
+#             errors = 0  # 每一轮开始时错误计数归零
+#             for xi, target in zip(X, y):  # 遍历每个样本和其目标值
+#                 update = self.eta * (target - self.predict(xi))  # 计算权重更新值
+#                 self.w_ += update * xi  # 更新权重向量
+#                 self.b_ += update  # 更新偏置
+#                 if update != 0.0:
+#                     errors += 1  # 如果发生了权重更新，说明分类错了，错误数+1
+#             self.errors_.append(errors)  # 记录本轮总的分类错误次数
+#         return self
+# 
+#     def net_input(self, X):
+#         """计算净输入 = 加权和 + 偏置"""
+#         return np.dot(X, self.w_) + self.b_
+# 
+#     def predict(self, X):
+#         """根据净输入判断类别（大于等于0为1，反之为-1）"""
+#         return np.where(self.net_input(X) >= 0.0, 1, -1)
+
+# - np.array 是反余弦函数
+# - np.linalg.norm 是计算向量长度的函数
+
 
 
 v1 = np.array([1, 2, 3])
@@ -164,10 +199,11 @@ np.arccos(v1.dot(v2) / (np.linalg.norm(v1) * np.linalg.norm(v2)))
 try:
     s = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
     print('From URL:', s)
+    # 从 URL 读取 CSV 数据（没有列名，所以 header=None）
     df = pd.read_csv(s,
                      header=None,
                      encoding='utf-8')
-    
+    # 显示 DataFrame 的最后5行数据，用于快速检查数据内容。
 except HTTPError:
     s = 'iris.data'
     print('From local Iris path:', s)
@@ -183,10 +219,12 @@ df.tail()
 
 
 
+#Jupyter Notebook 专用魔法命令，用于在 notebook 中直接内嵌显示图像。
 
 # select setosa and versicolor
-y = df.iloc[0:100, 4].values
-y = np.where(y == 'Iris-setosa', 0, 1)
+# 选取前100个样本（Setosa 和 Versicolor），第4列是类别
+y = df.iloc[0:100, 4].values # 提取类别列（字符串）
+y = np.where(y == 'Iris-setosa', 0, 1) # 将类别转换为二元：Setosa -> 0, Versicolor -> 1
 
 # extract sepal length and petal length
 X = df.iloc[0:100, [0, 2]].values
@@ -285,7 +323,6 @@ plt.show()
 
 
 
-
 # ## Implementing an adaptive linear neuron in Python
 
 
@@ -337,7 +374,7 @@ class AdalineGD:
         """
         rgen = np.random.RandomState(self.random_state)
         self.w_ = rgen.normal(loc=0.0, scale=0.01, size=X.shape[1])
-        self.b_ = np.float_(0.)
+        self.b_ = float(0.)
         self.losses_ = []
 
         for i in range(self.n_iter):
@@ -525,7 +562,7 @@ class AdalineSGD:
         """Initialize weights to small random numbers"""
         self.rgen = np.random.RandomState(self.random_state)
         self.w_ = self.rgen.normal(loc=0.0, scale=0.01, size=m)
-        self.b_ = np.float_(0.)
+        self.b_ = float(0.)
         self.w_initialized = True
         
     def _update_weights(self, xi, target):
